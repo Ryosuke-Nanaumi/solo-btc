@@ -1,0 +1,8 @@
+.appRoot {
+  min-height: 100vh;
+  background-color: #f4f4f5;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

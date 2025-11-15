@@ -1,0 +1,23 @@
+.header {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    gap: 8px;
+    background-color: aqua;
+    margin-bottom: 16px;
+}
+
+.title {
+    flex: 1;
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.info {
+    font-size: 18px;
+}
+
+.icon {
+    font-size: 20px;
+}
