@@ -1,0 +1,4 @@
+[
+  { "userId": 1, "exerciseId": 1, "date": "2024-01-20", "amount": 30 },
+  { "userId": 1, "exerciseId": 2, "date": "2024-01-20", "amount": 10 }
+]

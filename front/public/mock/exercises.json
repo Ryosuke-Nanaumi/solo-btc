@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "bench-press",
+    "displayName": "benchPress",
+    "point": 10,
+    "baseUnit": "reps",
+    "trainingIntensity": 0.5
+  },
+  {
+    "id": 2,
+    "name": "dead-lift",
+    "displayName": "deadLift",
+    "point": 10,
+    "baseUnit": "reps",
+    "trainingIntensity": 1
+  },
+  {
+    "id": 3,
+    "name": "squat",
+    "displayName": "squat",
+    "point": 10,
+    "baseUnit": "reps",
+    "trainingIntensity": 1
+  },
+  {
+    "id": 4,
+    "name": "running",
+    "displayName": "running",
+    "point": 20,
+    "baseUnit": "minutes",
+    "trainingIntensity": 2
+  }
+]
