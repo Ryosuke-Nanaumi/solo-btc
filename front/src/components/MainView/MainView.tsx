@@ -7,6 +7,7 @@ export default function MainView({ todayPoint }: { todayPoint: number }) {
     <main className={styles.main}>
       <TodaysPointView todayPoint={todayPoint} />
       <HistoryCardListView />
+      <button className={styles.addTrainingButton}>+ トレーニングを記録する</button>
     </main>
   );
 }

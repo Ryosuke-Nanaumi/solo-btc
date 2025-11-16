@@ -3,3 +3,28 @@
   flex-direction: column;
   gap: 16px;
 }
+
+.addTrainingButton {
+  background-color: #0d6efd;
+  color: #fff;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 12px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.1s ease, opacity 0.2s ease;
+}
+
+.addTrainingButton:active {
+  transform: scale(0.97);
+}
+
+.addTrainingButton:hover {
+  opacity: 0.95;
+}
+
