@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import { Header } from "./components/Header/Header";
-import TodaysPointView from "./components/TodaysPointView/TodaysPointView";
+import MainView from "./components/MainView/MainView";
 // import exercises from "./mock/exercises.json";
 
 interface Exercise {
@@ -33,9 +33,7 @@ function App() {
   return (
     <div className={styles.appRoot}>
       <Header />
-      <main className={styles.main}>
-        <TodaysPointView todayPoint={todayPoint} />
-      </main>
+      <MainView todayPoint={todayPoint} />
     </div>
   );
 }
