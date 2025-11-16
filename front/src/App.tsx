@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./App.module.css";
-import { Header } from "./components/Header/Header";
+import { Header } from "./components/layout/Header/Header";
 import MainView from "./components/MainView/MainView";
 // import exercises from "./mock/exercises.json";
 
