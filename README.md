@@ -14,4 +14,19 @@
   - ハードル高い
   - ダミーデータを入れておくでも最初は良い    
 
-
+```
+// DB側スキーマこうなる予定
+interface Exercise {
+  id: number;
+  name: string;
+  displayName: string;
+  baseUnit: string;
+  trainingIntensity: number;
+}
+interface TrainingLog {
+  userId: number;
+  exerciseId: number;
+  date: Date;
+  amount: number;
+}
+```

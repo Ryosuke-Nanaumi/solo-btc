@@ -28,3 +28,24 @@
   opacity: 0.95;
 }
 
+
+.rankingSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.rankingHeader {
+  display: flex;
+}
+
+.sectionTitle {
+  
+}
+
+.sectionTitle {
+
+}
+
+.rankingList {
+
+}

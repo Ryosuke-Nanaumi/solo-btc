@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Taro",
+      "points": 100
+    },
+    {
+      "id": 2,
+      "name": "Hanako",
+      "points": 120
+    },
+    {
+      "id": 3,
+      "name": "Ryo",
+      "points": 80
+    }
+  ]
+}
