@@ -7,14 +7,21 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "db:migrate": "knex --knexfile ./db/knexfile.js migrate:latest",
+    "db:migrate-make": "knex --knexfile ./db/knexfile.js migrate:make",
+    "db:seed": "knex --knexfile ./db/knexfile.js seed:run",
+    "db:seed-make": "knex --knexfile ./db/knexfile.js seed:make",
+    "db:reset": "knex --knexfile ./db/knexfile.js migrate:rollback --all && knex --knexfile ./db/knexfile.js migrate:latest && knex --knexfile ./db/knexfile.js seed:run"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "knex": "^3.1.0",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
