@@ -1,10 +1,13 @@
-import { readFile } from "fs/promises";
-import path from "path";
 import { db } from "../db/db";
 
 interface User {
-  id: number,
-  name: string,
+  id: number;
+  name: string;
+}
+export interface Ranking {
+  id: number;
+  name: string;
+  points: number;
 }
 const TABLES = Object.freeze({
   USERS: "users",
@@ -41,9 +44,28 @@ export class TrainingRepository {
     return await query;
   }
 
-  async getRanking() {
-    const filePath = path.join(__dirname, "../../mock/ranking.json");
-    const ranking = await readFile(filePath, "utf-8");
-    return JSON.parse(ranking);
+  async getRanking(): Promise<Ranking[]> {
+    const ranking = await db(TABLES.TRAINING_RECORDS)
+      .join(
+        TABLES.USERS,
+        `${TABLES.TRAINING_RECORDS}.user_id`,
+        `${TABLES.USERS}.id`
+      )
+      .join(
+        TABLES.EXERCISES,
+        `${TABLES.TRAINING_RECORDS}.exercise_id`,
+        `${TABLES.EXERCISES}.id`
+      )
+      .select(
+        `${TABLES.TRAINING_RECORDS}.user_id as id`,
+        `${TABLES.USERS}.name`,
+        db.raw("SUM(?? * ??) as points", [
+          `${TABLES.EXERCISES}.point`,
+          `${TABLES.TRAINING_RECORDS}.amount`,
+        ])
+      )
+      .groupBy(`${TABLES.TRAINING_RECORDS}.user_id`, `${TABLES.USERS}.name`)
+      .orderBy("points", "desc");
+    return ranking as Ranking[];
   }
 }

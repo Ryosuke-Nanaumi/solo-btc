@@ -1,4 +1,5 @@
 import { TrainingRepository } from "../repository/TrainingRepository";
+import { Ranking } from "../repository/TrainingRepository";
 
 interface PersonalUserInfo {
   id: number;
@@ -35,7 +36,7 @@ export class TrainingService {
     return target.reduce((acc, cur) => acc + cur.amount * cur.point, 0);
   }
 
-  async getRanking() {
-    return this.trainingRepository.getRanking();
+  async getRanking(): Promise<{ users: Ranking[] }> {
+    return { users: await this.trainingRepository.getRanking() };
   }
 }
