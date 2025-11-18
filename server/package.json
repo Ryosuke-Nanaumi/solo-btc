@@ -8,11 +8,11 @@
     "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "db:migrate": "knex --knexfile ./db/knexfile.js migrate:latest",
-    "db:migrate-make": "knex --knexfile ./db/knexfile.js migrate:make",
-    "db:seed": "knex --knexfile ./db/knexfile.js seed:run",
-    "db:seed-make": "knex --knexfile ./db/knexfile.js seed:make",
-    "db:reset": "knex --knexfile ./db/knexfile.js migrate:rollback --all && knex --knexfile ./db/knexfile.js migrate:latest && knex --knexfile ./db/knexfile.js seed:run"
+    "db:migrate": "knex migrate:latest",
+    "db:migrate-make": "knex migrate:make",
+    "db:seed": "knex seed:run",
+    "db:seed-make": "knex seed:make",
+    "db:reset": "knex migrate:rollback --all && knex migrate:latest && knex seed:run"
   },
   "keywords": [],
   "author": "",

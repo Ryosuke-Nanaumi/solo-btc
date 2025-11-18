@@ -14,10 +14,10 @@ module.exports = {
       password: "",
     },
     migrations: {
-      directory: "./migrations",
+      directory: "./src/db/migrations",
     },
     seeds: {
-      directory: "./seeds",
+      directory: "./src/db/seeds",
     },
   },
 };
