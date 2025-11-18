@@ -1,12 +1,7 @@
-import express from"express"
+import { createApp } from "./app";
 
-const app = express();
+const app = createApp();
 
-app.use(express.json());
-
-app.use("/", (req, res) => {
-  res.send("fooが呼び出されました。");
-});
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log("server is running!");
