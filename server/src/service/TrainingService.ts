@@ -17,16 +17,22 @@ export class TrainingService {
 
     if (!user) throw Error("user not found.");
 
-    const [totalPoint, todaysPoint] = await Promise.all([
-      this.trainingRepository.getTotalPoint(user.id, this.date),
-      this.trainingRepository.getTodaysPoint(user.id, this.date),
+    const [totalRecords, todaysRecords] = await Promise.all([
+      this.trainingRepository.getPoint(user.id),
+      this.trainingRepository.getPoint(user.id, this.date),
     ]);
+
+    const totalPoint = this.calcPoint(totalRecords);
+    const todaysPoint = this.calcPoint(todaysRecords);
 
     return {
       ...user,
       todaysPoint: todaysPoint,
       totalPoints: totalPoint,
     };
+  }
+  calcPoint(target: { amount: number; point: number }[]): number {
+    return target.reduce((acc, cur) => acc + cur.amount * cur.point, 0);
   }
 
   async getRanking() {

@@ -12,8 +12,12 @@ export class TrainingRepository {
   async getUserById() {
     return await db(TABLES.USERS).where({ id: 1 }).first();
   }
-  async getTotalPoint(id: number, date: Date) {
-    const records = await db(TABLES.TRAINING_RECORDS)
+
+  async getPoint(
+    id: number,
+    date?: Date
+  ): Promise<{ amount: number; point: number }[]> {
+    let query = db(TABLES.TRAINING_RECORDS)
       .join(
         TABLES.EXERCISES,
         `${TABLES.TRAINING_RECORDS}.exercise_id`,
@@ -23,28 +27,14 @@ export class TrainingRepository {
       .where(`${TABLES.TRAINING_RECORDS}.user_id`, id)
       .select(`${TABLES.TRAINING_RECORDS}.amount`, `${TABLES.EXERCISES}.point`);
 
-    const total = records.reduce((acc, cur) => acc + cur.amount * cur.point, 0);
-    return total;
-  }
+    if (date) {
+      query = query.whereRaw("??::date = ?::date", [
+        `${TABLES.TRAINING_RECORDS}.date`,
+        date,
+      ]);
+    }
 
-  async getTodaysPoint(id: number, date: Date) {
-    const todaysRecords = await db(TABLES.TRAINING_RECORDS)
-      .join(
-        TABLES.EXERCISES,
-        `${TABLES.TRAINING_RECORDS}.exercise_id`,
-        "=",
-        `${TABLES.EXERCISES}.id`
-      )
-      .where(`${TABLES.TRAINING_RECORDS}.user_id`, id)
-      .whereRaw("??::date = ?::date", [`${TABLES.TRAINING_RECORDS}.date`, date])
-      .select(`${TABLES.TRAINING_RECORDS}.amount`, `${TABLES.EXERCISES}.point`);
-
-    const todaysPoint = todaysRecords.reduce(
-      (acc, cur) => acc + cur.amount * cur.point,
-      0
-    );
-
-    return todaysPoint;
+    return await query;
   }
 
   async getRanking() {
