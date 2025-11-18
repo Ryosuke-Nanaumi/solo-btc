@@ -1,0 +1,28 @@
+{
+  "name": "solo-btc",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install",
+    "dev:server": "npm run dev --workspace=server",
+    "dev:front": "npm run dev --workspace=front",
+    "db:migrate": "npm run db:migrate --workspace=server",
+    "db:seed": "npm run db:seed --workspace=server",
+    "db:reset": "npm run db:reset --workspace=server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "workspaces": [
+    "front",
+    "server"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ryosuke-Nanaumi/solo-btc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ryosuke-Nanaumi/solo-btc/issues"
+  },
+  "homepage": "https://github.com/Ryosuke-Nanaumi/solo-btc#readme"
+}
