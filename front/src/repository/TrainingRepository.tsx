@@ -5,7 +5,9 @@ import type { Ranking } from "../types/domain/ranking";
 const API_BASE_URL = "http://localhost:3000"
 // 複雑なロジックは今のところないため、serviceなどは作らず、view側で整形
 export async function fetchPersonalUserInfo(): Promise<PersonalUserInfo> {
-  const res = await fetch(`${API_BASE_URL}/api/personal`);
+  // 仮でIDを設定
+  const id = 1;
+  const res = await fetch(`${API_BASE_URL}/api/personal/${id}`);
   if (!res.ok) {
     throw new Error("fetchPersonalUserInfo failed.");
   }

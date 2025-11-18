@@ -12,8 +12,8 @@ export class TrainingService {
     private readonly date = new Date()
   ) {}
 
-  async getPersonalInfo(): Promise<PersonalUserInfo> {
-    const user = await this.trainingRepository.getUserById();
+  async getPersonalInfo(userId: number): Promise<PersonalUserInfo> {
+    const user = await this.trainingRepository.getUserById(userId);
 
     if (!user) throw Error("user not found.");
 

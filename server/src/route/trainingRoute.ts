@@ -8,6 +8,6 @@ export function registerUserRoute(app: Express) {
   const trainingService = new TrainingService(trainingRepository);
   const trainingController = new TrainingController(trainingService);
 
-  app.get("/api/personal", trainingController.getPersonalInfo);
+  app.get("/api/personal/:id", trainingController.getPersonalInfo);
   app.get("/api/ranking", trainingController.getRanking);
 }

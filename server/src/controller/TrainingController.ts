@@ -5,7 +5,8 @@ export class TrainingController {
   constructor(private readonly trainingService: TrainingService) {}
 
   getPersonalInfo = async (req: Request, res: Response) => {
-    const personalUser = await this.trainingService.getPersonalInfo();
+    const id = Number(req.params.id);
+    const personalUser = await this.trainingService.getPersonalInfo(id);
     res.status(200).json(personalUser);
   };
   

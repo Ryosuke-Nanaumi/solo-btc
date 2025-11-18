@@ -2,6 +2,10 @@ import { readFile } from "fs/promises";
 import path from "path";
 import { db } from "../db/db";
 
+interface User {
+  id: number,
+  name: string,
+}
 const TABLES = Object.freeze({
   USERS: "users",
   EXERCISES: "exercises",
@@ -9,8 +13,8 @@ const TABLES = Object.freeze({
 });
 
 export class TrainingRepository {
-  async getUserById() {
-    return await db(TABLES.USERS).where({ id: 1 }).first();
+  async getUserById(id: number): Promise<User> {
+    return await db(TABLES.USERS).where({ id }).first();
   }
 
   async getPoint(
