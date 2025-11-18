@@ -8,6 +8,9 @@ export class TrainingController {
     const personalUser = await this.trainingService.getPersonalInfo();
     res.status(200).json(personalUser);
   };
-  // TODO
-  getRanking() {}
+  
+  getRanking = async (req: Request, res: Response) => {
+    const ranking = await this.trainingService.getRanking();
+    res.status(200).json(ranking);
+  }
 }

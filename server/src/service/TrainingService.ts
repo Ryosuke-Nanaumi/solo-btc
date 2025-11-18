@@ -6,4 +6,8 @@ export class TrainingService {
   async getPersonalInfo() {
     return this.trainingRepository.getPersonalInfo();
   }
+  
+  async getRanking() {
+    return this.trainingRepository.getRanking();
+  }
 }

@@ -9,6 +9,5 @@ export function registerUserRoute(app: Express) {
   const trainingController = new TrainingController(trainingService);
 
   app.get("/api/personal", trainingController.getPersonalInfo);
-  // TODO
   app.get("/api/ranking", trainingController.getRanking);
 }
