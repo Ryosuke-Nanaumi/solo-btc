@@ -1,7 +1,7 @@
 import { useState } from "react";
-import styles from "./module/MainView.module.css";
 import { addTrainingLog } from "../../repository/TrainingRepository";
 import TrainingFormView from "./TrainingFormView";
+import Button from "../ui/Button";
 
 const mockExercises = [
   { id: 1, name: "benchPress", displayName: "ベンチプレス" },
@@ -29,7 +29,7 @@ export default function RecordTrainingView({
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async () => {
     if (!formData.exerciseId || Number(formData.amount) <= 0) {
       alert("種目と実行量を正しく入力してください");
       return;
@@ -66,11 +66,8 @@ function RecordTrainingButton({
   setIsModalOpen: (_: boolean) => void;
 }) {
   return (
-    <button
-      className={styles.addTrainingButton}
-      onClick={() => setIsModalOpen(true)}
-    >
+    <Button onClick={() => setIsModalOpen(true)}>
       + トレーニングを記録する
-    </button>
+    </Button>
   );
 }
