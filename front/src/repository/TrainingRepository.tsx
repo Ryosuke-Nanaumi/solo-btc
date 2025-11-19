@@ -1,8 +1,7 @@
 import type { PersonalUserInfo } from "../types/domain/personalUserInfo";
 import type { Ranking } from "../types/domain/ranking";
 
-// TODO: 後からenvへ
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = import.meta.env.DEV ? "http://localhost:3000" : "";
 // 複雑なロジックは今のところないため、serviceなどは作らず、view側で整形
 export async function fetchPersonalUserInfo(): Promise<PersonalUserInfo> {
   // 仮でIDを設定
