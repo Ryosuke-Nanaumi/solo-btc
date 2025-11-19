@@ -1,4 +1,4 @@
-// require("dotenv").config();
+require("dotenv").config();
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
@@ -18,6 +18,16 @@ module.exports = {
     },
     seeds: {
       directory: "./src/db/seeds",
+    },
+  },
+  production: {
+    client: "postgresql",
+    connection: process.env.DATABASE_URL,
+    migrations: {
+      directory: "./dist/db/migrations",
+    },
+    seeds: {
+      directory: "./dist/db/seeds",
     },
   },
 };
