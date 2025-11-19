@@ -9,7 +9,7 @@ export default function HistoryCardListView({
 }: HistoryCardListViewProps) {
   return (
     <div className={styles.historyCardList}>
-      <Card label="直近の合計ポイント" value={String(totalPoints)} />
+      <Card label="累計ポイント" value={`${String(totalPoints)}pt`} />
       <Card label="連続記録日数" value="10Days" />
     </div>
   );

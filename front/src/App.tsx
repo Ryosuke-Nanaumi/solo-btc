@@ -14,6 +14,7 @@ import type { PersonalUserInfo } from "./types/domain/personalUserInfo.ts";
 function App() {
   const [userInfo, setUserInfo] = useState<PersonalUserInfo>();
   const [ranking, setRanking] = useState<DisplayedRankingUser[]>([]);
+  const [needRefresh, setNeedRefresh] = useState(0);
   const setCreatedDisplayedRanking = (users: RankingUser[]) => {
     const displayedRanking = users.map((user, index) => {
       return { ...user, rank: index + 1 };
@@ -21,8 +22,8 @@ function App() {
     setRanking(displayedRanking);
   };
   const handleRecordSuccess = () => {
-    console.log("foo");
-  }
+    setNeedRefresh((n) => n + 1);
+  };
   useEffect(() => {
     async function load() {
       const [userInfo, rankingInfo]: [PersonalUserInfo, Ranking] =
@@ -32,11 +33,15 @@ function App() {
       setCreatedDisplayedRanking(rankingInfo.users);
     }
     load();
-  }, []);
+  }, [needRefresh]);
   return (
     <div className={styles.appRoot}>
       <Header />
-      <MainView userInfo={userInfo} ranking={ranking} onRecordSuccess={handleRecordSuccess}/>
+      <MainView
+        userInfo={userInfo}
+        ranking={ranking}
+        onRecordSuccess={handleRecordSuccess}
+      />
     </div>
   );
 }
