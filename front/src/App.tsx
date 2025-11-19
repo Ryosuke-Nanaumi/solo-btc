@@ -7,10 +7,12 @@ import {
   fetchRanking,
 } from "./repository/TrainingRepository.tsx";
 import type { RankingUser } from "./types/domain/ranking.ts";
+import type { Ranking } from "./types/domain/ranking.ts";
 import type { DisplayedRankingUser } from "./types/view/displayedRanking.ts";
+import type { PersonalUserInfo } from "./types/domain/personalUserInfo.ts";
 
 function App() {
-  const [todayPoint, setTodayPoint] = useState(0);
+  const [userInfo, setUserInfo] = useState<PersonalUserInfo>();
   const [ranking, setRanking] = useState<DisplayedRankingUser[]>([]);
   const setCreatedDisplayedRanking = (users: RankingUser[]) => {
     const displayedRanking = users.map((user, index) => {
@@ -20,12 +22,10 @@ function App() {
   };
   useEffect(() => {
     async function load() {
-      const [userInfo, rankingInfo] = await Promise.all([
-        fetchPersonalUserInfo(),
-        fetchRanking(),
-      ]);
+      const [userInfo, rankingInfo]: [PersonalUserInfo, Ranking] =
+        await Promise.all([fetchPersonalUserInfo(), fetchRanking()]);
 
-      setTodayPoint(userInfo.todaysPoint);
+      setUserInfo(userInfo);
       setCreatedDisplayedRanking(rankingInfo.users);
     }
     load();
@@ -33,7 +33,7 @@ function App() {
   return (
     <div className={styles.appRoot}>
       <Header />
-      <MainView todayPoint={todayPoint} ranking={ranking} />
+      <MainView userInfo={userInfo} ranking={ranking} />
     </div>
   );
 }

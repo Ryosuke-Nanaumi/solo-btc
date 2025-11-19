@@ -3,17 +3,18 @@ import styles from "./module/MainView.module.css";
 import HistoryCardListView from "../HistoryCardListView/HistoryCardListView";
 import TotalRankingView from "./TotalRankingView";
 import type { DisplayedRankingUser } from "../../types/view/displayedRanking";
+import type { PersonalUserInfo } from "../../types/domain/personalUserInfo";
 
 interface MainViewProps {
-  todayPoint: number;
+  userInfo?: PersonalUserInfo;
   ranking: DisplayedRankingUser[];
 }
 
-export default function MainView({ todayPoint, ranking }: MainViewProps) {
+export default function MainView({ userInfo, ranking }: MainViewProps) {
   return (
     <main className={styles.main}>
-      <TodaysPointView todayPoint={todayPoint} />
-      <HistoryCardListView />
+      <TodaysPointView todayPoint={userInfo?.todaysPoint ?? 0} />
+      <HistoryCardListView totalPoints={userInfo?.totalPoints ?? 0} />
       <button className={styles.addTrainingButton}>
         + トレーニングを記録する
       </button>
