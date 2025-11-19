@@ -6,14 +6,16 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/server.ts",
     "type-check": "tsc --noEmit",
     "db:migrate": "knex migrate:latest",
     "db:migrate-make": "knex migrate:make",
     "db:seed": "knex seed:run",
     "db:seed-make": "knex seed:make",
-    "db:reset": "knex migrate:rollback --all && knex migrate:latest && knex seed:run"
+    "db:reset": "knex migrate:rollback --all && knex migrate:latest && knex seed:run",
+    "test": "vitest",
+    "test:unit": "vitest --runInBand --exclude 'src/**/integration/**'",
+    "test:int": "vitest --runInBand 'src/**/integration/**/*.test.ts'"
   },
   "keywords": [],
   "author": "",
@@ -29,7 +31,10 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.5",
     "@types/node": "^24.10.1",
+    "@types/supertest": "^6.0.3",
+    "supertest": "^7.1.4",
     "tsx": "^4.20.6",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.10"
   }
 }
