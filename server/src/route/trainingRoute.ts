@@ -10,4 +10,5 @@ export function registerUserRoute(app: Express) {
 
   app.get("/api/personal/:id", trainingController.getPersonalInfo);
   app.get("/api/ranking", trainingController.getRanking);
+  app.post("/api/training_records", trainingController.postTrainingRecords);
 }

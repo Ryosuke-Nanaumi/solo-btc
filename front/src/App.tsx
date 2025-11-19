@@ -20,6 +20,9 @@ function App() {
     });
     setRanking(displayedRanking);
   };
+  const handleRecordSuccess = () => {
+    console.log("foo");
+  }
   useEffect(() => {
     async function load() {
       const [userInfo, rankingInfo]: [PersonalUserInfo, Ranking] =
@@ -33,7 +36,7 @@ function App() {
   return (
     <div className={styles.appRoot}>
       <Header />
-      <MainView userInfo={userInfo} ranking={ranking} />
+      <MainView userInfo={userInfo} ranking={ranking} onRecordSuccess={handleRecordSuccess}/>
     </div>
   );
 }

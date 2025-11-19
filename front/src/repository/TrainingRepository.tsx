@@ -2,7 +2,7 @@ import type { PersonalUserInfo } from "../types/domain/personalUserInfo";
 import type { Ranking } from "../types/domain/ranking";
 
 // TODO: 後からenvへ
-const API_BASE_URL = "http://localhost:3000"
+const API_BASE_URL = "http://localhost:3000";
 // 複雑なロジックは今のところないため、serviceなどは作らず、view側で整形
 export async function fetchPersonalUserInfo(): Promise<PersonalUserInfo> {
   // 仮でIDを設定
@@ -22,4 +22,21 @@ export async function fetchRanking(): Promise<Ranking> {
   }
 
   return res.json();
+}
+
+interface TrainingLog {
+  exerciseId: number;
+  date: string;
+  amount: number;
+}
+export async function addTrainingLog(payload: TrainingLog) {
+  // return
+
+  const response = await fetch(`${API_BASE_URL}/api/training_records`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ...payload, id: 1 }),
+  });
+
+  return response.json();
 }

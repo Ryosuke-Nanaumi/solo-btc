@@ -7,6 +7,12 @@ interface PersonalUserInfo {
   todaysPoint: number;
   totalPoints: number;
 }
+export interface TrainingRecords {
+  exerciseId: number;
+  date: Date;
+  amount: number;
+  id: number;
+}
 export class TrainingService {
   constructor(
     private readonly trainingRepository: TrainingRepository,
@@ -38,5 +44,14 @@ export class TrainingService {
 
   async getRanking(): Promise<{ users: Ranking[] }> {
     return { users: await this.trainingRepository.getRanking() };
+  }
+
+  async postTrainingRecords(
+    trainigRecords: TrainingRecords
+  ): Promise<{ id: number; status: string }> {
+    const [result] = await this.trainingRepository.postTrainingRecords(
+      trainigRecords
+    );
+    return { id: result.id, status: "created" };
   }
 }

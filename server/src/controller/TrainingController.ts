@@ -9,9 +9,26 @@ export class TrainingController {
     const personalUser = await this.trainingService.getPersonalInfo(id);
     res.status(200).json(personalUser);
   };
-  
+
   getRanking = async (req: Request, res: Response) => {
     const ranking = await this.trainingService.getRanking();
     res.status(200).json(ranking);
-  }
+  };
+
+  postTrainingRecords = async (req: Request, res: Response) => {
+    // const ranking = await this.trainingService.getRanking();
+    const records = req.body;
+
+    // console.log("foo----------", `post呼ばれた!-> ${records}`);
+    // console.log(records);
+    const result = await this.trainingService.postTrainingRecords({
+      exerciseId: Number(records.exerciseId),
+      date: new Date(records.date),
+      amount: Number(records.amount),
+      id: Number(records.id),
+    });
+
+    res.status(201).json(result);
+    // res.status(201).json({});
+  };
 }

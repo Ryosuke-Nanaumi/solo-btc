@@ -1,4 +1,5 @@
 import { db } from "../db/db";
+import { TrainingRecords } from "../service/TrainingService";
 
 interface User {
   id: number;
@@ -67,5 +68,19 @@ export class TrainingRepository {
       .groupBy(`${TABLES.TRAINING_RECORDS}.user_id`, `${TABLES.USERS}.name`)
       .orderBy("points", "desc");
     return ranking as Ranking[];
+  }
+
+  async postTrainingRecords(
+    trainigRecords: TrainingRecords
+  ): Promise<{ id: number }[]> {
+    const trainigRecordsSnake = {
+      user_id: trainigRecords.id,
+      exercise_id: trainigRecords.exerciseId,
+      date: trainigRecords.date,
+      amount: trainigRecords.amount,
+    };
+    return await db(TABLES.TRAINING_RECORDS)
+      .insert(trainigRecordsSnake)
+      .returning("id");
   }
 }
