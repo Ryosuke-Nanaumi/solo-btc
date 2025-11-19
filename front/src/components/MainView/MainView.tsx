@@ -2,7 +2,7 @@ import TodaysPointView from "../TodaysPointView/TodaysPointView";
 import styles from "./module/MainView.module.css";
 import HistoryCardListView from "../HistoryCardListView/HistoryCardListView";
 import TotalRankingView from "./TotalRankingView";
-import RecordTrainingView from "./RecordTrainingButton";
+import RecordTrainingView from "./RecordTrainingView";
 import type { DisplayedRankingUser } from "../../types/view/displayedRanking";
 import type { PersonalUserInfo } from "../../types/domain/personalUserInfo";
 
