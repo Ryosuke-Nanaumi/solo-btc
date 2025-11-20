@@ -73,6 +73,7 @@ export class TrainingRepository {
   async postTrainingRecords(
     trainigRecords: TrainingRecords
   ): Promise<{ id: number }[]> {
+    console.log("fooooooo----", trainigRecords.id);
     const trainigRecordsSnake = {
       user_id: trainigRecords.id,
       exercise_id: trainigRecords.exerciseId,

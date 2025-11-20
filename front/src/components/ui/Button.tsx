@@ -4,7 +4,11 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "cancel";
 }
 
-export default function Button({ children, variant = "primary", ...props }: ButtonProps) {
+export default function Button({
+  children,
+  variant = "primary",
+  ...props
+}: ButtonProps) {
   const className = `${styles.base} ${styles[variant]}`;
 
   return (
@@ -13,3 +17,6 @@ export default function Button({ children, variant = "primary", ...props }: Butt
     </button>
   );
 }
+
+// 外部からこんな感じで呼べる
+// <Button variant="primary">記録を保存する</Button>

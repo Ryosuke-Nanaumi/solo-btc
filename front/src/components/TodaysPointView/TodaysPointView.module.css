@@ -1,7 +1,11 @@
 .todaysPointView {
-  background-color: aquamarine;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(205, 243, 232);
+  width: 300px;
   padding: 10px;
   border-radius: 10px;
+  align-items: center;
 }
 
 .text {

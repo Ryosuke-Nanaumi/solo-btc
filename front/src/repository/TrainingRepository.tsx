@@ -2,11 +2,11 @@ import type { PersonalUserInfo } from "../types/domain/personalUserInfo";
 import type { Ranking } from "../types/domain/ranking";
 
 const API_BASE_URL = import.meta.env.DEV ? "http://localhost:3000" : "";
+const ID = 2;
 // 複雑なロジックは今のところないため、serviceなどは作らず、view側で整形
 export async function fetchPersonalUserInfo(): Promise<PersonalUserInfo> {
   // 仮でIDを設定
-  const id = 1;
-  const res = await fetch(`${API_BASE_URL}/api/personal/${id}`);
+  const res = await fetch(`${API_BASE_URL}/api/personal/${ID}`);
   if (!res.ok) {
     throw new Error("fetchPersonalUserInfo failed.");
   }
@@ -34,7 +34,7 @@ export async function addTrainingLog(payload: TrainingLog) {
   const response = await fetch(`${API_BASE_URL}/api/training_records`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ ...payload, id: 1 }),
+    body: JSON.stringify({ ...payload, id: ID }),
   });
 
   return response.json();
