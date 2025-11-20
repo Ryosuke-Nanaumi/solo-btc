@@ -13,8 +13,7 @@
     "build:front": "npm run build --workspace=front && rm -rf server/public && cp -r front/dist server/public",
     "build:server": "npm run build --workspace=server",
     "start": "node server/dist/server.js",
-    "test": "npm run test:front && npm run test:server",
-    "test:front": "npm run test --workspace=front",
+    "test": "npm run test:server",
     "test:server": "npm run test --workspace=server",
     "test:server:unit": "npm run test:unit --workspace=server",
     "test:server:int": "npm run test:int --workspace=server"

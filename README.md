@@ -6,7 +6,7 @@ FitRanker は、モチベーション維持を目的とした競争（ランキ�
 
 ### キーコンセプト
 
-- ポイント制: レップ数や負荷量、継続日数に応じてポイントを獲得。
+- ポイント制: ワークアウトのレップ数に応じてポイントを獲得。
 - 競争と可視化: 参加ユーザー中、自分が何位か（N 人中 M 位）を明確に表示。
 
 ## ⚙️ 2. 技術スタックとアーキテクチャ
@@ -29,7 +29,13 @@ FitRanker は、モチベーション維持を目的とした競争（ランキ�
 # 1. 依存関係のインストール (front/ & server/ を一括で)
 npm install
 
-# 2. データベースのセットアップと初期データ投入
+# 2. データベースの作成
+PostgreSQL にアプリ用データベースを作成
+psql -U postgres
+CREATE DATABASE training;
+\q
+
+# 3. データベースのセットアップと初期データ投入
 # (ロールバック -> マイグレーション -> シード実行を連続で行う)
 npm run db:reset --workspace=server
 ```
@@ -43,4 +49,44 @@ npm run db:reset --workspace=server
 | バックエンド (API)  | npm run dev:server | http://localhost:3000 など |
 | フロントエンド (UI) | npm run dev:front  | http://localhost:5173 など |
 
+### 3-3. テスト実行
+
+本プロジェクトでは、Vitest を使用してテストを実行します。(現在serverのテストのみ対応)
+ルートディレクトリで以下のコマンドを利用できます。
+
+#### 全体テスト(現在はserverのみ)
+```
+npm test
+```
+
+#### バックエンドのテスト
+```
+# server/ 配下のすべてのテスト（ユニット + 結合テスト）を実行
+npm run test:server
+
+# ユニットテストのみ実行（結合(Integration)テストを含まないテスト）
+npm run test:server:unit
+
+# 結合テストを実行
+npm run test:server:int
+
+```
+> [!WARNING]
+> 結合テストでは`test`環境が使用されるため、初回のみテスト用データベースの作成とマイグレーションが必要です。結合テストの実行が必要な場合、以下のセットアップ処理を行なってください。
+> ```
+> # 1. PostgreSQL にテスト用 DB を作成（training_test）
+> psql -U postgres
+> CREATE DATABASE training_test;
+> \q
+> 
+> # 2. テスト用 DB にマイグレーションを適用
+> npm run db:migrate:test --workspace=server
+> 
+> # 3. 結合テスト実行
+> npm run test:server:int
+> ```
+
 ## 💡 4. 今後の展望
+- ログイン機能の追加
+  - ユーザーごとにポイントを競い合う機能の実装
+- 消費カロリーの自動計算機能を追加
